@@ -1,0 +1,11 @@
+{
+  "name": "Jarvis — assistente pessoal",
+  "short_name": "Jarvis",
+  "description": "Sua assistente pessoal, sempre por perto.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#11120f",
+  "theme_color": "#11120f",
+  "icons": [{"src":"/static/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
