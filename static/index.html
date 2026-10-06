@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#11120f">
+  <meta name="description" content="Sua assistente pessoal, sempre por perto.">
+  <title>Jarvis — seu assistente pessoal</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-button" id="history-toggle" aria-label="Abrir conversas" title="Conversas">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <a class="brand" href="/" aria-label="Jarvis, início">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 18.2c-2.7-.8-4.5-3.1-4.5-6A7 7 0 0 1 19 9.5c.6 4.5-2.7 6.1-3.4 8.7M9 21h6m-5.5-2.5h5"/><path d="M12 2.5v2M3.5 8l1.8.7m15.2-.7-1.8.7"/></svg></span>
+        <span>Jarvis</span><span class="online-dot"></span>
+      </a>
+      <div class="top-actions">
+        <button class="icon-button" id="notes-toggle" aria-label="Abrir notas e lembretes" title="Notas e lembretes">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h8l4 4V20a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2Z"/><path d="M14.5 3.5v5h5M9 13h6m-6 4h6"/></svg>
+        </button>
+        <button class="icon-button" id="tracker-toggle" aria-label="Abrir Rastreador" title="Rastreador">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h17M7 15l4-4 3 2 6-7"/><path d="M16 6h4v4"/></svg>
+        </button>
+        <button class="icon-button" id="voice-toggle" aria-label="Desativar voz" title="Voz ativada"></button>
+        <button class="icon-button" id="theme-toggle" aria-label="Alternar tema" title="Alternar tema">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.3A8.4 8.4 0 0 1 8.7 3.8 8.5 8.5 0 1 0 20.2 15.3Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="welcome" id="welcome">
+        <div class="eyebrow"><span></span> SEU ESPAÇO, NO SEU RITMO</div>
+        <h1>Oi! Eu sou o <em>Jarvis.</em></h1>
+        <p>O que está passando pela sua cabeça?</p>
+        <div class="quick-actions" aria-label="Ações rápidas">
+          <button class="quick-action" data-prompt="Resuma o texto a seguir de forma clara e objetiva. Se eu ainda não enviei um texto, peça para eu colar aqui."><span class="quick-icon lilac">≋</span> Resumir texto</button>
+          <button class="quick-action" data-prompt="Ajude a traduzir um texto. Pergunte o texto e para qual idioma, se eu ainda não tiver enviado."><span class="quick-icon mint">文</span> Traduzir</button>
+          <button class="quick-action" data-prompt="Me ajude a pensar em ideias criativas. Pergunte sobre o tema se eu ainda não disser."><span class="quick-icon peach">✳</span> Ideias</button>
+          <button class="quick-action" data-prompt="Me ajude a montar um plano leve e realista para o meu dia. Pergunte minhas prioridades se eu ainda não disser."><span class="quick-icon yellow">◷</span> Plano do dia</button>
+          <button class="quick-action" data-prompt="Explique este assunto de um jeito simples, com exemplos. Pergunte o que quero entender se eu ainda não disser."><span class="quick-icon blue">?</span> Explicar</button>
+        </div>
+      </section>
+
+      <section class="conversation" id="conversation" aria-live="polite" aria-label="Conversa com Jarvis"></section>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+      <form class="composer" id="chat-form">
+        <label class="sr-only" for="message-input">Escreva sua mensagem</label>
+        <textarea id="message-input" rows="1" maxlength="12000" placeholder="Escreva ou fale o que você está pensando..." required></textarea>
+        <div class="composer-bottom">
+          <span class="composer-hint"><span class="sparkle">✦</span> Um passo de cada vez.</span><button type="button" class="mic-button" id="mic-button" aria-label="Falar mensagem" title="Falar mensagem"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></button>
+          <button class="send-button" type="submit" aria-label="Enviar mensagem">
+            <span>Enviar</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-4.5 14-3-5.5L5 12Z"/><path d="m11.5 13.5 4.5-5"/></svg>
+          </button>
+        </div>
+      </form>
+      <p class="disclaimer">O Jarvis pode cometer erros. Confira informações importantes.</p>
+    </main>
+
+    <div class="scrim" id="scrim"></div>
+    <aside class="drawer history-drawer" id="history-drawer" aria-label="Conversas anteriores" aria-hidden="true">
+      <div class="drawer-header"><div><span class="drawer-kicker">SEU CANTINHO</span><h2>Conversas</h2></div><button class="icon-button close-drawer" aria-label="Fechar">×</button></div>
+      <button class="new-chat" id="new-chat"><span>＋</span> Nova conversa</button>
+      <div id="history-list" class="drawer-list"></div>
+    </aside>
+
+    <aside class="drawer notes-drawer" id="notes-drawer" aria-label="Notas e lembretes" aria-hidden="true">
+      <div class="drawer-header"><div><span class="drawer-kicker">NÃO DEIXE ESCAPAR</span><h2>Notas & lembretes</h2></div><button class="icon-button close-drawer" aria-label="Fechar">×</button></div>
+      <form id="note-form" class="note-form">
+        <label for="note-input">Uma ideia, tarefa ou lembrete</label>
+        <textarea id="note-input" rows="3" maxlength="1000" placeholder="Anote aqui, rapidinho..."></textarea>
+        <div class="note-form-bottom"><input id="reminder-date" type="datetime-local" aria-label="Data e hora do lembrete"><button type="submit" class="add-note">Salvar</button></div>
+      </form>
+      <p class="local-note">🔒 Suas anotações ficam salvas só neste aparelho.</p>
+      <div id="notes-list" class="drawer-list notes-list"></div>
+    </aside>
+
+    <aside class="drawer tracker-drawer" id="tracker-drawer" aria-label="Rastreador" aria-hidden="true">
+      <div class="drawer-header"><div><span class="drawer-kicker">ACOMPANHE O QUE IMPORTA</span><h2>Rastreador</h2></div><button class="icon-button close-drawer" aria-label="Fechar">×</button></div>
+      <div class="tracker-stats"><div><span id="tracker-count">0 itens</span><strong id="tracker-total">R$ 0,00</strong><small>Total dos valores numéricos</small></div></div>
+      <div class="chart-wrap"><div class="tracker-section-title">Visão rápida</div><div id="tracker-chart" class="tracker-chart"></div></div>
+      <form id="tracker-form" class="tracker-form">
+        <div class="tracker-section-title">Novo item</div>
+        <input type="hidden" id="tracker-id">
+        <label for="tracker-name">Nome</label><input id="tracker-name" maxlength="80" required placeholder="Ex.: gasto mercado, encomenda">
+        <div class="tracker-form-row"><div><label for="tracker-value">Valor / código</label><input id="tracker-value" maxlength="80" required placeholder="R$ 45,00 ou BR123..."></div><div><label for="tracker-category">Categoria</label><input id="tracker-category" maxlength="40" placeholder="Gasto, hábito..."></div></div>
+        <label for="tracker-date">Data</label><input id="tracker-date" type="date">
+        <div class="tracker-form-actions"><button type="button" class="tracker-cancel" id="tracker-cancel">Limpar</button><button type="submit" class="add-note" id="tracker-save">Adicionar</button></div>
+      </form>
+      <div class="tracker-items-heading"><div class="tracker-section-title">Seus itens</div><span>Editar e ver histórico</span></div>
+      <div id="tracker-list" class="drawer-list tracker-list"></div>
+      <p class="tracker-chat-hint">No chat: <code>rastrear Mercado = 45,90 | categoria Gastos</code></p>
+    </aside>
+  </div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
